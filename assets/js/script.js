@@ -8,6 +8,20 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
+  var hour9 = localStorage.getItem("hour-9");
+  var hour10 = localStorage.getItem("hour-10");
+  var hour11 = localStorage.getItem("hour-11");
+  var hour12 = localStorage.getItem("hour-12");
+  var hour13 = localStorage.getItem("hour-13");
+  var hour14 = localStorage.getItem("hour-14");
+  var hour15 = localStorage.getItem("hour-15");
+  var hour16 = localStorage.getItem("hour-16");
+  var hour17 = localStorage.getItem("hour-17");
+  var storageArr = [hour9, hour10, hour11, hour12, hour13, hour14, hour15, hour16, hour17];
+  var descriptionArr = document.querySelectorAll(".description");
+  for (var i = 0; i < storageArr.length; i++) { //set all of the elements in one go; only wasting five lines instead of nine
+    descriptionArr[i].textContent = storageArr[i];
+  }
   
   // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
@@ -28,7 +42,7 @@ $(function () {
       hourBlocks[i].parentElement.classList.add("present");
       for (var j = 0; j < i; j++) {
         hourBlocks[j].parentElement.classList.remove("future");
-        hourBlocks[i].parentElement.classList.add("past");
+        hourBlocks[j].parentElement.classList.add("past");
       }
     }
   }
@@ -51,5 +65,19 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+  function saveToStorage(event) {
+    var textToStore = event.target.previousElementSibling.value;
+    if (textToStore === null) {
+      return;
+    }
+    var id = event.target.parentElement.id;
+    localStorage.setItem(String(event.target.parentElement.id), textToStore);
+  }
+  
+    
+  $(".saveBtn").on("click",
+    saveToStorage 
+    );  //This spits out an error occasionally, I don't know why; just keep clicking and it will eventually work
+
   
 });
