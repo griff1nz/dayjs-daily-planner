@@ -71,7 +71,7 @@ $(function () {
       return;
     }
     var id = event.target.parentElement.id;
-    localStorage.setItem(String(event.target.parentElement.id), textToStore);
+    localStorage.setItem(event.target.parentElement.id, textToStore);
   }
   
     
