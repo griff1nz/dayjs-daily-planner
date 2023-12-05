@@ -19,6 +19,7 @@ $(function () {
   var hour17 = localStorage.getItem("hour-17");
   var storageArr = [hour9, hour10, hour11, hour12, hour13, hour14, hour15, hour16, hour17];
   var descriptionArr = document.querySelectorAll(".description");
+  var confirmation = document.getElementById("confirm");
   for (var i = 0; i < storageArr.length; i++) { //set all of the elements in one go; only wasting five lines instead of nine
     descriptionArr[i].textContent = storageArr[i];
   }
@@ -70,8 +71,11 @@ $(function () {
     if (textToStore === null) {
       return;
     }
-    var id = event.target.parentElement.id;
     localStorage.setItem(event.target.parentElement.id, textToStore);
+    confirmation.textContent = "Event added to local storage!";
+    setInterval(function() {
+      confirmation.textContent = " ";
+    }, 1000);
   }
   
     
